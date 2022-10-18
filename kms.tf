@@ -1,4 +1,4 @@
-resource "aws_key_pair" "deployer" {
-  key_name   = "deployer-key"
+resource "aws_key_pair" "ssh-key-jenkins" {
+  key_name   = "ssh-key-jenkins"
   public_key = var.jenkins-public-key
-  }
+}
