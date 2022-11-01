@@ -32,3 +32,9 @@ $ terraform apply -var-file="secrets.tfvars"
 ## KMS
 
 SSH keys is specified in special `secrets.tfvars`
+
+## Jenkins
+
+* Download terraform plugin
+* Global tool configuration > Add Terraform > Add terraform path
+* Add credentials to Jenkins
