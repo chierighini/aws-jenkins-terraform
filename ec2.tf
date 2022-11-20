@@ -5,7 +5,7 @@ resource "aws_instance" "jenkins-instance" {
   subnet_id                   = var.subnet_id
   associate_public_ip_address = true
   key_name                    = var.ssh_key_name
-  user_data                   = file("install_jenkins.sh")
+  user_data                   = file(".terraform/modules/jenkins/install_jenkins.sh")
 
   tags = {
     Name = "Jenkins-Instance"
