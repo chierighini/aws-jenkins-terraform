@@ -2,17 +2,18 @@
 
 ## Usage
 
-Ensure that the AWS credentials are properly exported into your environment:
+This is a Terraform module and must be called via the `module` resource:
 
 ```
-$ export AWS_SECRET_KEY_ID=<your_key_id>
-$ export AWS_SECRET_ACCESS_KEY=<your_key>
+module "jenkins" {
+  source       = "github.com/chierighini/aws-terraform-jenkins.git"
+  vpc_id       = your_vpc_id
+  subnet_id    = your_subnet_id
+  ssh_key_name = your_ssh_key
+}
 ```
-Create a `secrets.tfvars` in project root, and put your aws public key in a `jenkins-public-key` variable:
 
-```
-jenkins-public-key=<your-public-key>
-```
+## In the main Terraform script that you're importing the module from:
 
 Initialize terraform using 
 ```
@@ -21,20 +22,22 @@ $ terraform init
 
 Then run 
 ```
-$ terraform plan -var-file="secrets.tfvars"
+$ terraform plan
 ```
 Check if the changes match the expected infrastructure and run 
 
 ```
-$ terraform apply -var-file="secrets.tfvars"
+$ terraform apply
 ```
 
-## KMS
+To update this module in your terraform script you can run either
 
-SSH keys is specified in special `secrets.tfvars`
+```
+$ terraform init -upgrade
+```
 
-## Jenkins
+or
 
-* Download terraform plugin
-* Global tool configuration > Add Terraform > Add terraform path
-* Add credentials to Jenkins
+```
+$ terraform get -update
+```
